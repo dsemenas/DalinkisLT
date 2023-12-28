@@ -72,7 +72,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center py-8">
+    <div className="flex flex-col justify-center items-center py-8 px-10">
       <div
         className={`flex justify-center items-center w-full max-w-5xl py-3 px-5 border rounded-full bg-white ${
           isFocused ? "ring-2 ring-primary" : ""
@@ -101,32 +101,52 @@ export default function Home() {
         <h2 className="text-4xl font-medium text-center">
           Naujausi nuomos pasiūlymai
         </h2>
-        <div className="grid grid-cols-4 grid-wrows-auto gap-y-5 gap-x-5 w-full mt-16">
+        <div className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-wrows-auto gap-y-5 gap-x-5 w-full mt-16">
           {data
             ? data.products.map((product, index) => (
                 <div
-                  className="card card-compact max-h-96 max-w-96 bg-base-100 shadow-xl text-start cursor-pointer"
+                  className="card card-compact max-w-96 bg-base-100 shadow-md transition duration-150 hover:shadow-2xl text-start cursor-pointer bg-white"
                   key={index}
                   onClick={() => {}}
                 >
-                  <figure>
+                  <figure className="relative">
                     <img
                       src={product.images[0]}
                       alt={product.title}
-                      className="object-fit"
+                      className="object-cover h-56 w-full"
                     />
+                    <span className="badge badge-primary absolute top-2 right-2 p-4 font-semibold text-lg text-white">
+                      {product.price > 100 ? "99" : product.price}€/para
+                    </span>
                   </figure>
                   <div className="card-body">
                     <div className="flex justify-between items-center space-x-10">
-                      <h2 className="card-title truncate">{product.title}</h2>
+                      <div className="flex items-center gap-2">
+                        <div className="avatar">
+                          <div className="w-12 rounded-full">
+                            <img src={product.images[0]} />
+                          </div>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-base">Loreta</span>
+                          <div className="flex justify-start items-center gap-1 text-accent">
+                            <span>
+                              {(Math.round(product.rating * 10) / 10).toFixed(
+                                1
+                              )}
+                            </span>
+                            <i className="fa-sharp fa-star" />
+                          </div>
+                        </div>
+                      </div>
                       <div className="block whitespace-nowrap">
                         <i className="fa-regular fa-location-dot me-1" />
                         <span>Vilnius</span>
                       </div>
                     </div>
-                    <span>Kaina: {product.price} €</span>
-                    <span>Reitingas: {product.rating}</span>
-                    <div className="card-actions justify-end"></div>
+                    <h2 className="card-title truncate text-center">
+                      {product.title}
+                    </h2>
                   </div>
                 </div>
               ))
