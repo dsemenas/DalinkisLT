@@ -18,14 +18,12 @@ const Product: React.FC<ProductProps> = ({
 }) => {
   const router = useRouter();
 
-  const handleClick = () => {
-    router.push(`/products/${id}`);
-  };
-
   return (
     <div
       className="card card-compact max-w-96 bg-base-100 shadow-md transition duration-150 hover:shadow-2xl text-start cursor-pointer bg-white"
-      onClick={handleClick}
+      onClick={() => {
+        router.push(`/products/${id}`);
+      }}
     >
       <figure className="relative">
         <img
@@ -50,7 +48,7 @@ const Product: React.FC<ProductProps> = ({
               <span className="text-base">Loreta</span>
               <div className="flex justify-start items-center gap-1 text-accent">
                 <span>{(Math.round(rating * 10) / 10).toFixed(1)}</span>
-                <i className="fa-sharp fa-star" />
+                <i className="fa-sharp fa-solid fa-star" />
               </div>
             </div>
           </div>
