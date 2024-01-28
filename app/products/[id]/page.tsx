@@ -120,8 +120,8 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
         </div>
         <div className="right-side">
-          <div className="card bg-base-100 w-full sticky top-0">
-            <div className="card-body">
+          <div className="card bg-base-100 w-full">
+            <div className="card-body pt-0">
               <span className="text-start text-3xl">{data?.title}</span>
               <hr className="border-gray-300" />
               <div className="grid grid-cols-2 mt-7">
@@ -136,29 +136,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                       </li>
                     ))}
                   </ul>
-                </div>
-                <div className="flex flex-col w-min gap-y-1">
-                  <div className="flex items-center gap-x-3">
-                    <div className="avatar offline">
-                      <div className="w-24 rounded-full">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ4HQXmfC1hcblbT6LgrXFm-OfSAScC8dEhQ&usqp=CAU" />
-                      </div>
-                    </div>
-                    <div className="truncate">
-                      <span className="block text-xl">KajusLe</span>
-                      <Rating rating={4.5} />
-                      <span className="font-light text-sm text-gray-500">
-                        Prisijungęs prieš 10 min.
-                      </span>
-                    </div>
-                  </div>
-                  <button className="btn btn-sm btn-neutral text-white w-full">
-                    <i className="fa-sharp fa-solid fa-comments" />
-                    <span>Susisiekti</span>
-                  </button>
-                </div>
-                <div className="">
-                  <ul className="truncate">
+                  <ul className="truncate mt-2">
                     {priceInfo.map((info, index) => (
                       <li key={index}>
                         <span className="me-2 text-gray-600">
@@ -206,6 +184,26 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                     </a>
                     .
                   </p>
+                </div>
+                <div className="flex flex-col w-min gap-y-1">
+                  <div className="flex items-center gap-x-3">
+                    <div className="avatar offline">
+                      <div className="w-24 rounded-full">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ4HQXmfC1hcblbT6LgrXFm-OfSAScC8dEhQ&usqp=CAU" />
+                      </div>
+                    </div>
+                    <div className="truncate">
+                      <span className="block text-xl">KajusLe</span>
+                      <Rating rating={4.5} />
+                      <span className="font-light text-sm text-gray-500">
+                        Prisijungęs prieš 10 min.
+                      </span>
+                    </div>
+                  </div>
+                  <button className="btn btn-sm btn-neutral text-white w-full">
+                    <i className="fa-sharp fa-solid fa-comments" />
+                    <span>Susisiekti</span>
+                  </button>
                 </div>
               </div>
             </div>
