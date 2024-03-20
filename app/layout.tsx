@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import NavigationBar from "./components/NavigationBar";
+import UserAuthContextProvider from "./contexts/UserAuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -50,7 +52,10 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {children}
+        <UserAuthContextProvider>
+          <NavigationBar />
+          {children}
+        </UserAuthContextProvider>
         <footer className="footer p-10 bg-base-300 text-base-content">
           <nav>
             <header className="footer-title">Services</header>

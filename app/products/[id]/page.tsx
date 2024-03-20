@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { useEffect, useState } from "react";
 import Review from "@/app/components/Review";
 import Rating from "@/app/components/Rating";
@@ -121,12 +122,32 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         </div>
         <div className="right-side">
           <div className="card bg-base-100 w-full">
-            <div className="card-body pt-0">
+            <div className="card-body p-0">
               <span className="text-start text-3xl">{data?.title}</span>
               <hr className="border-gray-300" />
-              <div className="grid grid-cols-2 mt-7">
-                <div className="">
-                  <ul className="mt-2 truncate">
+              <div className="mt-7">
+                <div className="flex flex-col w-min gap-y-1">
+                  <div className="flex items-center gap-x-3">
+                    <div className="avatar offline">
+                      <div className="w-24 rounded-full">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ4HQXmfC1hcblbT6LgrXFm-OfSAScC8dEhQ&usqp=CAU" />
+                      </div>
+                    </div>
+                    <div className="truncate">
+                      <span className="block text-xl">KajusLe</span>
+                      <Rating rating={4.5} />
+                      <span className="font-light text-sm text-gray-500">
+                        Prisijungęs prieš 10 min.
+                      </span>
+                    </div>
+                  </div>
+                  <button className="btn btn-sm btn-neutral text-white w-full">
+                    <i className="fa-sharp fa-solid fa-comments" />
+                    <span>Susisiekti</span>
+                  </button>
+                </div>
+                <div className="mt-4">
+                  <ul className="truncate">
                     {quickInfo.map((info, index) => (
                       <li key={index}>
                         <span className="me-2 text-gray-600">
@@ -149,9 +170,13 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                   <ul className="mt-2">
                     <li className="">
                       <span className="me-2 text-gray-600">Sąskaita:</span>
-                      <span>
+                      <span className="">
                         Sąskaita faktūra neišrašoma arba išrašoma ne visai
                         sumai.
+                        <i
+                          className="fa-regular fa-circle-info text-primary ms-1 cursor-pointer"
+                          onClick={() => 0}
+                        />
                       </span>
                     </li>
                     <li className="mt-2">
@@ -178,32 +203,25 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                     </li>
                   </ul>
                   <p className="mt-4 font-light text-gray-600">
-                    Nežinai kaip išsinuomuoti? Spausk{" "}
-                    <a href="/" className="link link-primary">
+                    Kyla klausimų kaip išsinuomuoti? Spausk{" "}
+                    <a href="" className="link link-primary">
                       čia
                     </a>
                     .
                   </p>
-                </div>
-                <div className="flex flex-col w-min gap-y-1">
-                  <div className="flex items-center gap-x-3">
-                    <div className="avatar offline">
-                      <div className="w-24 rounded-full">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ4HQXmfC1hcblbT6LgrXFm-OfSAScC8dEhQ&usqp=CAU" />
-                      </div>
-                    </div>
-                    <div className="truncate">
-                      <span className="block text-xl">KajusLe</span>
-                      <Rating rating={4.5} />
-                      <span className="font-light text-sm text-gray-500">
-                        Prisijungęs prieš 10 min.
+                  <hr className="mt-4 border-gray-300" />
+                  <div className="mt-7">
+                    <span className="block text-xl">Rezervacija</span>
+                    <div className="mt-2">
+                      <span className="block text-sm font-light text-gray-600">
+                        Pasirinkite rezervacijos laikotarpį
                       </span>
+                      <div className="mt-2"></div>
                     </div>
+                    <button className="btn btn-sm btn-neutral text-white mt-4">
+                      Rezervuoti <span className="font-light"></span>
+                    </button>
                   </div>
-                  <button className="btn btn-sm btn-neutral text-white w-full">
-                    <i className="fa-sharp fa-solid fa-comments" />
-                    <span>Susisiekti</span>
-                  </button>
                 </div>
               </div>
             </div>
