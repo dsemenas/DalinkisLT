@@ -1,40 +1,40 @@
-"use-client";
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useState,
-  ReactNode,
-} from "react";
+"use client";
+import React, { createContext, useState } from "react";
 
-export type UserAuth = {
+type userAuthContextProviderProps = {
+  children: React.ReactNode;
+};
+
+type userAuthContext = {
   isLoggedIn: boolean;
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export interface UserAuthContextInterface {
-  userAuth: UserAuth;
-  setUserAuth: Dispatch<SetStateAction<UserAuth>>;
-}
+const userAuthContext = createContext<userAuthContext | null>(null);
 
-const defaultState = {
-  userAuth: {
-    isLoggedIn: false,
-  },
-  setUserAuth: (userAuth: UserAuth) => {},
-} as UserAuthContextInterface;
-
-export const UserContext = createContext(defaultState);
-
-type ProviderProps = {
-  children: ReactNode;
-};
-
-export function UserAuthProvider({ children }: ProviderProps) {
-  const [userAuth, setUserAuth] = useState<UserAuth>({ isLoggedIn: false });
+export default function UserAuthContextProvider({
+  children,
+}: userAuthContextProviderProps) {
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   return (
-    <UserContext.Provider value={{ userAuth, setUserAuth }}>
+    <userAuthContext.Provider
+      value={{
+        isLoggedIn,
+        setIsLoggedIn,
+      }}
+    >
       {children}
-    </UserContext.Provider>
+    </userAuthContext.Provider>
   );
+}
+
+export function useAuthContext() {
+  const context = createContext(userAuthContext);
+  if (!context) {
+    throw new Error(
+      "useAuthContext must be used within UserAuthContextProvider"
+    );
+  }
+  return context;
 }
