@@ -1,16 +1,16 @@
 "use client";
-import React, { createContext, useState } from "react";
+import React, { useContext, createContext, useState } from "react";
 
 type userAuthContextProviderProps = {
   children: React.ReactNode;
 };
 
-type userAuthContext = {
+type UserAuthContext = {
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const userAuthContext = createContext<userAuthContext | null>(null);
+export const UserAuthContext = createContext<UserAuthContext | null>(null);
 
 export default function UserAuthContextProvider({
   children,
@@ -18,19 +18,19 @@ export default function UserAuthContextProvider({
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   return (
-    <userAuthContext.Provider
+    <UserAuthContext.Provider
       value={{
         isLoggedIn,
         setIsLoggedIn,
       }}
     >
       {children}
-    </userAuthContext.Provider>
+    </UserAuthContext.Provider>
   );
 }
 
 export function useAuthContext() {
-  const context = createContext(userAuthContext);
+  const context = useContext(UserAuthContext);
   if (!context) {
     throw new Error(
       "useAuthContext must be used within UserAuthContextProvider"

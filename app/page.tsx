@@ -23,8 +23,6 @@ export default function Home() {
     skip: number;
     limit: number;
   }
-
-  const [isFocused, setIsFocused] = useState<boolean>(false);
   const [data, setData] = useState<ApiResponse | null>(null);
 
   const categories = [
@@ -74,34 +72,21 @@ export default function Home() {
 
   return (
     <div className="flex flex-col justify-center items-center py-8 px-10">
-      <div
-        className={`flex justify-center items-center w-full max-w-5xl py-3 px-5 border rounded-full bg-white ${
-          isFocused ? "ring-2 ring-primary" : ""
-        }`}
-      >
-        <input
-          type="text"
-          placeholder="Ieškoti pagal raktažodį..."
-          className="w-full bg-transparent outline-0"
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-        />
-        <a className="cursor-pointer">
-          <i className="fa-regular fa-magnifying-glass text-gray-400" />
-        </a>
-      </div>
-      <div className="grid grid-cols-2 grid-rows-auto gap-y-3 gap-x-16 mt-16">
-        {categories.map((c, index) => (
-          <a className="inline-block link link-primary" key={index}>
-            <i className={`fa-fw ${c.icon} me-2`} />
-            {c.category}
-          </a>
-        ))}
+      <div className="">
+        <h1 className="text-3xl font-medium text-center">Kategorijos</h1>
+        <div className="grid grid-cols-2 grid-rows-auto gap-y-3 gap-x-16 mt-7">
+          {categories.map((c, index) => (
+            <a className="inline-block link link-primary" key={index}>
+              <i className={`fa-fw ${c.icon} me-2`} />
+              {c.category}
+            </a>
+          ))}
+        </div>
       </div>
       <div className="mt-16">
-        <h2 className="text-4xl font-medium text-center">
+        <h1 className="text-4xl font-medium text-center">
           Naujausi nuomos pasiūlymai
-        </h2>
+        </h1>
         <div className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-rows-auto gap-y-5 gap-x-5 w-full mt-16">
           {data
             ? data.products.map((product, index) => (
